@@ -1,0 +1,46 @@
+create models for the users and data 
+    models are the documents with there fields, field types
+
+create routes by sending response from js files
+    create api in index .js: app.use('/api/auth',require('./routes/auth'))
+    send response from auth.js in routes
+
+connecting to the atlas database
+    1. create a cluster
+    2. give the network access from everywhere
+    3. set the database access create user and password
+    4. from connect get the string to put inside config file
+    5. mongoose.connect(string from above,()=>{clg("connected")})
+
+adding a entry
+    1. create a schema (structure of the document in collection)
+    2. specify the collection name and schema using mongoose.model('collsction(singular)',schema)   ## while crating collection atlas adds 's' eg: user - users
+    3. use middleware express.json() to give data in json format inside index.js
+    4. use post method to go to a api then send some data (using get can show the data inside url)
+    5. adding checks the data that user enters through express-validator inside auth.js
+    6. use .crate() method for saving the req.body attributes inside a collection
+    7. then some privacy parts use jwt that modifies ur password string
+    8. auth token returned
+
+creating login
+    1. use the findone() fn 
+    2. match the modified strings
+    3. return auth token
+
+middleware introduced - used for doing a task repeatedly
+    1. midddleware is just a function that loads on a particular or all routes(for app.use(middleware)) 
+    2. takes arguments req, res, next
+    3. req, res are normal
+    4. next() just passes the res to the next fn or middleware in line 
+    5. middleware execure according to the order in which they are passed 
+
+creating notes endpoints was easy but adding the checks for auth token is the catch
+    1. add note     : use .create() 
+    2. fetch all    : use .find()
+    3. update       : use .findByIdAndUpdate()
+        fn parameters are intresting refer the doc
+        1. id of the note to find
+        2. {$set : newNote}     $set updates or adds a field
+        3. {new: true}          return the updated element by default false
+    4. delete       : use .deleteOne()
+
