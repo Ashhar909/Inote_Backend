@@ -7,6 +7,7 @@ const { body, validationResult } = require("express-validator");
 
 // * Route 1
 // fetch all the notes of a particular user
+// Login required
 router.get("/fetchallnotes", fetchUser, async (req, res) => {
   try {
     const notes = await Note.find({ user: req.user.id });
@@ -20,6 +21,7 @@ router.get("/fetchallnotes", fetchUser, async (req, res) => {
 
 // * Route 2
 // add notes to the user
+// Login required
 router.post(
   "/addnote",
   [
@@ -55,6 +57,7 @@ router.post(
 
 // * Route 3
 // update a note
+// Login required
 router.put("/updatenote/:id", fetchUser, async (req, res) => {
   try {
     // destructure
@@ -103,6 +106,7 @@ router.put("/updatenote/:id", fetchUser, async (req, res) => {
 
 // * Route 4
 // delete a node
+// Login required
 router.delete("/deletenote/:id", fetchUser, async (req, res) => {
   try {
     let noteFromDb = await Note.findOne({ _id: req.params.id });
