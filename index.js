@@ -10,7 +10,12 @@ const port = 8000
 // to send requests in json
 // middleware required
 app.use(express.json());
-app.use(cors());
+
+const corsOptions = {
+  origin: 'https://rococo-taffy-cc7900.netlify.app/',
+  credentials: true,
+};
+app.use(cors(corsOptions));
 // app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: false }));
 

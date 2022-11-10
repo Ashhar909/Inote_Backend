@@ -3,7 +3,11 @@ const mongoose = require('mongoose');
 const mongooseUrl = "mongodb+srv://Ashhar:12345@clusternote.eow42.mongodb.net/?retryWrites=true&w=majority"
 
 const connectToMongo = () => {
-    mongoose.connect(mongooseUrl,()=>{
+    mongoose.connect(mongooseUrl,
+        {
+            useNewUrlParser: true,
+            useUnifiedTopology: true
+        },()=>{
         console.log('Connected')
     })
 }
