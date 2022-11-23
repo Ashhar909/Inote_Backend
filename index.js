@@ -11,11 +11,7 @@ const port = 8000
 // middleware required
 app.use(express.json());
 
-const corsOptions = {
-  origin: 'https://rococo-taffy-cc7900.netlify.app/',
-  credentials: true,
-};
-app.use(cors(corsOptions));
+app.use(cors());
 // app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: false }));
 
